@@ -17,3 +17,7 @@ async def get_single_table(request:Request,table_name:str):
 async def describe_single_table_controller(request:Request,table_name:str):
     print("here")
     return await service.describe_single_table_service(request.state.pool, table_name)
+
+@router.get(path="/length/{table_name}")
+async def getTableLength(request:Request,table_name:str):
+  return await service.get_single_table_length(request.state.pool,table_name)
