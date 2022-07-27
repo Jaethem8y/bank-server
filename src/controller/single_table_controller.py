@@ -5,7 +5,7 @@ from src.service import single_tables_service as service
 router = APIRouter()
 
 @router.get("/data_dict")
-async def get_data_dict(request:Request):
+async def get_data_dict(request:Request,item_code:str=None,meaning:str=None):
     return await service.get_single_table(request.state.pool, "data_dict")
 
 @router.get(path="/fdic_fail")
@@ -40,7 +40,3 @@ async def get_PrimaryABARoutingNumber(request:Request):
 @router.get("/{table_name}")
 async def get_single_table(request:Request,table_name:str,start:int=None, end:int=None, bank_id:str=None, start_year:int=None, end_year:int=None, start_quarter:int=None, end_quarter:int=None,start_score:int=None, end_score:int=None):
     return await service.get_single_table(request.state.pool, table_name)
-
-@router.get(path="/length/{table_name}")
-async def getTableLength(request:Request,table_name:str):
-  return await service.get_single_table_length(request.state.pool,table_name)
