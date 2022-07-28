@@ -38,8 +38,4 @@ async def db_session_middleware(request: Request, call_next):
     response = await call_next(request)
     return response
 
-@app.get(path="/")
-async def getIndex(request:Request):
-  return RedirectResponse("/docs")
-
 app.include_router(api_router)
