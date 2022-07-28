@@ -1,6 +1,6 @@
 from src.repository import sql_methods as sql
 
-from src.DTO.search_filter.DataDict import DataDict
+from src.DTO.search_filter import DataDict
 
 async def filter_data_dict(pool, dataDict:DataDict):
     query = "SELECT * FROM data_dict Where 1 = 1 "
