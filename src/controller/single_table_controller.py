@@ -2,11 +2,12 @@ from fastapi import APIRouter, Request
 
 from src.service import single_tables_service as service
 
+
 router = APIRouter()
 
 @router.get("/data_dict")
-async def get_data_dict(request:Request,item_code:str="",meaning:str="",start:int=0):
-    return await service.get_data_dict(request.state.pool, item_code, meaning, start)
+async def get_data_dict(request:Request,start:int=0):
+    return await service.get_data_dict(request.state.pool, start)
 
 @router.get(path="/fdic_fail")
 async def get_fdic_fail(request:Request,FDICCertificateNumber:str="", BankName:str="", City:str="", ST:str="", AcquiringInstitution:str="", startClosingDate:str="1950-01-01",endClosingDate:str="2050-01-01",start:int=0):
