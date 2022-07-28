@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
+from mangum import Mangum
 
 from src.db import host, user, password, port, database
 from src.controller.api import router as api_router
@@ -39,3 +40,4 @@ async def db_session_middleware(request: Request, call_next):
     return response
 
 app.include_router(api_router)
+handler = Mangum(app)
